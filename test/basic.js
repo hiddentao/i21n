@@ -1,9 +1,9 @@
-const i21n = require('../')
+const I21n = require('../')
 const { expect } = require('code')
 
 exports['basic'] = {
   beforeEach: function *() {
-    const trans = new i21n({
+    const trans = new I21n({
       'screen.test1': 'Oh yeah!',
       'screen.test2': 'Hello {name}, is your fullname {name} {surname}?',
       'screen': {
