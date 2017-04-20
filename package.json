@@ -1,0 +1,40 @@
+{
+  "name": "i21n",
+  "version": "1.0.0",
+  "description": "Tiny internationalization library for Node and the Browser",
+  "main": "dist/i21n.js",
+  "scripts": {
+    "prepublish": "npm test",
+    "build": "babel -d dist src",
+    "test": "npm run build && mocha --timeout 3000 --ui exports --reporter spec test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiddentao/i21n.git"
+  },
+  "keywords": [
+    "i18n",
+    "translation",
+    "interpolation",
+    "strings"
+  ],
+  "author": "Ramesh Nair <ram@hiddentao.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hiddentao/i21n/issues"
+  },
+  "homepage": "https://github.com/hiddentao/i21n#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.20.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "code": "^4.0.0",
+    "eslint": "^3.11.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "mocha": "^3.2.0"
+  }
+}
