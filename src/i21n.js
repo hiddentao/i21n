@@ -29,7 +29,9 @@ export default class T {
       keys.unshift(`${id}.${locale}`)
     }
 
-    for (let key of keys) {
+    for (let i in keys) {
+      const key = keys[i]
+
       if (this._data[key]) {
         let ret = this._data[key]
 

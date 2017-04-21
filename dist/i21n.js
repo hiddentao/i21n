@@ -51,36 +51,17 @@ var T = function () {
         keys.unshift(id + '.' + locale);
       }
 
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
+      for (var i in keys) {
+        var key = keys[i];
 
-      try {
-        for (var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var key = _step.value;
+        if (this._data[key]) {
+          var ret = this._data[key];
 
-          if (this._data[key]) {
-            var ret = this._data[key];
-
-            for (var k in vars) {
-              ret = ret.replace(new RegExp('{' + k + '}', 'gm'), vars[k]);
-            }
-
-            return ret;
+          for (var k in vars) {
+            ret = ret.replace(new RegExp('{' + k + '}', 'gm'), vars[k]);
           }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
+
+          return ret;
         }
       }
     }
