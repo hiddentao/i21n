@@ -1,9 +1,8 @@
-export default class T {
+module.exports = class T {
   constructor (data, { defaultLocale } = {}) {
-    this._data = data
-    this.defaultLocale = defaultLocale
-
-    this._parse(this._data)
+    this._defaultLocale = defaultLocale
+    this._data = {}
+    this._parse(data)
   }
 
   _parse (data, prefix) {

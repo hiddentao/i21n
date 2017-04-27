@@ -1,8 +1,8 @@
 {
   "name": "i21n",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tiny internationalization library for Node and the Browser",
-  "main": "dist/i21n.js",
+  "main": "index.js",
   "scripts": {
     "prepublish": "npm test",
     "build": "babel -d dist src",

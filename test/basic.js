@@ -1,8 +1,9 @@
 const I21n = require('../')
+
 const { expect } = require('code')
 
 exports['basic'] = {
-  beforeEach: function *() {
+  beforeEach: function () {
     const trans = new I21n({
       'screen.test1': 'Oh yeah!',
       'screen.test2': 'Hello {name}, is your fullname {name} {surname}?',
@@ -26,32 +27,32 @@ exports['basic'] = {
     this.t = trans.t.bind(trans)
   },
 
-  'bad id': function *() {
+  'bad id': function () {
     expect(this.t('screen.invalid')).to.be.undefined()
   },
 
-  'string id': function *() {
+  'string id': function () {
     expect(this.t('screen.test1')).to.equal('Oh yeah!')
   },
 
-  'arg replacement': function *() {
+  'arg replacement': function () {
     expect(this.t('screen.test2', {
       name: 'Ram',
       surname: 'Bo'
     })).to.equal('Hello Ram, is your fullname Ram Bo?')
   },
 
-  'nested object -> string id': function *() {
+  'nested object -> string id': function () {
     expect(this.t('screen.test3')).to.equal('Oh yeah 3')
   },
 
-  'default locale': function *() {
+  'default locale': function () {
     expect(this.t('screen.test3.child', {
       action: 'go'
     })).to.equal('Now go')
   },
 
-  'override locale': function *() {
+  'override locale': function () {
     expect(this.t('screen.test3.child', {
       action: 'go'
     }, {
@@ -59,7 +60,7 @@ exports['basic'] = {
     })).to.equal('Jetzt go')
   },
 
-  'fallback to default locale': function *() {
+  'fallback to default locale': function () {
     expect(this.t('screen.test3.child2', {
       action: 'go'
     }, {
