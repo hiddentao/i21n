@@ -13,24 +13,37 @@ module.exports = function () {
 
     _classCallCheck(this, T);
 
-    this._defaultLocale = defaultLocale;
+    this._defaultLocale = defaultLocale || '_';
     this._data = {};
     this._parse(data);
   }
 
   _createClass(T, [{
     key: '_parse',
-    value: function _parse(data, prefix) {
+    value: function _parse(data, locale, prefix) {
       for (var k in data) {
         var val = data[k];
         var key = prefix ? prefix + '.' + k : k;
 
         if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
-          this._parse(val, key);
+          this._parse(val, locale, key);
         } else {
+          if (locale) {
+            key = key + '.' + locale;
+          }
+
           this._data[key] = val;
         }
       }
+    }
+  }, {
+    key: 'loadLocale',
+    value: function loadLocale(locale, data) {
+      if (!locale) {
+        throw new Error('Locale needed');
+      }
+
+      this._parse(data, locale);
     }
   }, {
     key: 't',

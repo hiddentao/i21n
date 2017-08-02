@@ -1,21 +1,33 @@
 module.exports = class T {
   constructor (data, { defaultLocale } = {}) {
-    this._defaultLocale = defaultLocale
+    this._defaultLocale = defaultLocale || '_'
     this._data = {}
     this._parse(data)
   }
 
-  _parse (data, prefix) {
+  _parse (data, locale, prefix) {
     for (let k in data) {
-      const val = data[k]
-      const key = prefix ? `${prefix}.${k}` : k
+      let val = data[k]
+      let key = prefix ? `${prefix}.${k}` : k
 
       if (typeof val === 'object') {
-        this._parse(val, key)
+        this._parse(val, locale, key)
       } else {
+        if (locale) {
+          key = `${key}.${locale}`
+        }
+
         this._data[key] = val
       }
     }
+  }
+
+  loadLocale (locale, data) {
+    if (!locale) {
+      throw new Error('Locale needed')
+    }
+
+    this._parse(data, locale)
   }
 
   t (id, vars = {}, { locale } = {}) {
