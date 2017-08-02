@@ -11,6 +11,7 @@ Features:
 * Named-variable interpolation
 * Flexible configuration format
 * Set default and fallback locale
+* Load additional locale data at any time
 * Works in Node.js and browser
 * Small, no external dependencies
 
@@ -93,6 +94,19 @@ i21n.t('good.day', {
 i21n.t('my.name.is', {
   name: 'Ram',
   locale: 'de'
+})
+
+// Load additional locale data
+i21n.loadLocale('zh-CN', {
+  'good': {
+    'day': '你好{name}',
+  },
+})
+// "你好Ram"
+i21n.t('good.day', {
+  name: 'Ram'
+}, {
+  locale: 'zh-CN'
 })
 ```
 
