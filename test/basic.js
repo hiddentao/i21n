@@ -25,6 +25,7 @@ exports['basic'] = {
     })
 
     this.t = trans.t.bind(trans)
+    this.sub = trans.sub.bind(trans)
     this.loadLocale = trans.loadLocale.bind(trans)
   },
 
@@ -93,5 +94,19 @@ exports['basic'] = {
     expect(this.t('screen.test3.child2.ok', {}, {
       locale: 'fr'
     })).to.equal('Now3')
+  },
+
+  'variable substitution helper': {
+    'using all variables': function () {
+      expect(this.sub('what is {my} {name}', {
+        my: 'his',
+        name: 'age'
+      })).to.equal('what is his age')
+    },
+    'using only some variables': function () {
+      expect(this.sub('what is {my} {name}', {
+        my: 'his'
+      })).to.equal('what is his {name}')
+    }
   }
 }

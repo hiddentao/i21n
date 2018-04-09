@@ -65,13 +65,22 @@ module.exports = function () {
         if (this._data[key]) {
           var ret = this._data[key];
 
-          for (var k in vars) {
-            ret = ret.replace(new RegExp('{' + k + '}', 'gm'), vars[k]);
-          }
-
-          return ret;
+          return this.sub(ret, vars);
         }
       }
+    }
+  }, {
+    key: 'sub',
+    value: function sub(str) {
+      var vars = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+      var ret = str;
+
+      for (var k in vars) {
+        ret = ret.replace(new RegExp('{' + k + '}', 'gm'), vars[k]);
+      }
+
+      return ret;
     }
   }]);
 

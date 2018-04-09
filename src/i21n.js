@@ -46,12 +46,18 @@ module.exports = class T {
       if (this._data[key]) {
         let ret = this._data[key]
 
-        for (let k in vars) {
-          ret = ret.replace(new RegExp(`{${k}}`, 'gm'), vars[k])
-        }
-
-        return ret
+        return this.sub(ret, vars)
       }
     }
+  }
+
+  sub (str, vars = {}) {
+    let ret = str
+
+    for (let k in vars) {
+      ret = ret.replace(new RegExp(`{${k}}`, 'gm'), vars[k])
+    }
+
+    return ret
   }
 }
